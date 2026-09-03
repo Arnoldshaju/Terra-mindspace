@@ -41,9 +41,7 @@ type PlacedOrder = {
 };
 
 function orderMessage(order: PlacedOrder) {
-  const items = order.lines
-    .map((l) => `${l.qty} x ${l.name} — ${inr(l.qty * l.price)}`)
-    .join("\n");
+  const items = order.lines.map((l) => `${l.qty} x ${l.name} — ${inr(l.qty * l.price)}`).join("\n");
   return `New order ${order.id}\nName: ${order.name}\nType: ${order.mode}\n\n${items}\n\nTotal: ${inr(order.total)}`;
 }
 
@@ -88,7 +86,8 @@ function CheckoutPage() {
             <span className="text-primary">{inr(placed.total)}</span>
           </div>
           <p className="mt-3 text-xs text-muted-foreground">
-            Ready in about {placed.eta}. Pay cash or UPI on {placed.mode === "delivery" ? "delivery" : "pickup"}.
+            Ready in about {placed.eta}. Pay cash or UPI on{" "}
+            {placed.mode === "delivery" ? "delivery" : "pickup"}.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -112,9 +111,7 @@ function CheckoutPage() {
     return (
       <div className="mx-auto max-w-xl px-5 py-32 text-center">
         <h1 className="text-4xl">Your cart is empty</h1>
-        <p className="mt-3 text-muted-foreground">
-          Add a puttum beefum and come right back.
-        </p>
+        <p className="mt-3 text-muted-foreground">Add a puttum beefum and come right back.</p>
         <Button asChild variant="hero" size="lg" className="mt-8">
           <Link to="/menu">Browse the menu</Link>
         </Button>

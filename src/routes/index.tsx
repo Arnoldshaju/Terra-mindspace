@@ -53,8 +53,7 @@ export const Route = createFileRoute("/")({
 
 const REVIEWS = [
   {
-    quote:
-      "Had a good experience — great food, good staff, clean place. Highly recommended.",
+    quote: "Had a good experience — great food, good staff, clean place. Highly recommended.",
     author: "Google review",
   },
   {
@@ -90,8 +89,8 @@ function Home() {
             <span className="text-gradient-ember">served on a banana leaf.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground animate-rise md:text-lg">
-            Puttum beefum, dum biryani and kudampuli curries — cooked in coconut
-            oil, plated hot, and now delivered to your door in Chalakudy.
+            Puttum beefum, dum biryani and kudampuli curries — cooked in coconut oil, plated hot,
+            and now delivered to your door in Chalakudy.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3 animate-rise">
             <Button asChild variant="hero" size="xl">
@@ -192,10 +191,9 @@ function Home() {
           <p className="eyebrow">The room</p>
           <h2 className="mt-4 text-4xl md:text-5xl">Brass lamps, dark teak, clean tables</h2>
           <p className="mt-6 leading-relaxed text-muted-foreground">
-            A calm room off Tramway Lane where families sit long after the plates
-            are cleared. Attentive staff, spotless floors and the smell of
-            roasting spice — the reason guests call it the best food spot in
-            Chalakudy.
+            A calm room off Tramway Lane where families sit long after the plates are cleared.
+            Attentive staff, spotless floors and the smell of roasting spice — the reason guests
+            call it the best food spot in Chalakudy.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild variant="hero">
@@ -242,8 +240,7 @@ function Home() {
           Hungry? <span className="text-gradient-ember">We're 20 minutes away.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-          Free delivery on orders above ₹499 across Chalakudy. Pickup ready in 15
-          minutes.
+          Free delivery on orders above ₹499 across Chalakudy. Pickup ready in 15 minutes.
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Button asChild variant="hero" size="xl">

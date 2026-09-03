@@ -45,9 +45,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
               aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
             />
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            {item.description}
-          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-display text-xl text-primary">{inr(item.price)}</span>

@@ -27,8 +27,7 @@ function AboutPage() {
     <div className="mx-auto max-w-5xl px-5 pt-16 pb-24">
       <p className="eyebrow">Our story</p>
       <h1 className="mt-4 max-w-3xl text-5xl leading-tight md:text-6xl">
-        A TERRA kitchen with a{" "}
-        <span className="text-gradient-ember">Chalakudy address</span>
+        A TERRA kitchen with a <span className="text-gradient-ember">Chalakudy address</span>
       </h1>
 
       <div className="mt-12 overflow-hidden rounded-lg shadow-plate">
@@ -45,28 +44,24 @@ function AboutPage() {
       <div className="mt-14 grid gap-10 md:grid-cols-2">
         <div className="space-y-5 leading-relaxed text-muted-foreground">
           <p>
-            TERRA Mindspace started with one stubborn idea: that the food you
-            eat out should taste like the food you grew up eating at home. Not
-            lighter. Not tamer. The same coconut oil, the same kudampuli sourness,
-            the same pepper heat.
+            TERRA Mindspace started with one stubborn idea: that the food you eat out should taste
+            like the food you grew up eating at home. Not lighter. Not tamer. The same coconut oil,
+            the same kudampuli sourness, the same pepper heat.
           </p>
           <p>
-            Our beef is roasted low for hours until the masala clings to it. Our
-            puttu is steamed in batches through the day so it never sits.
-            Biryani goes on dum with kaima rice and fried shallots, and the fish
-            curry is made fresh each morning with the day's catch.
+            Our beef is roasted low for hours until the masala clings to it. Our puttu is steamed in
+            batches through the day so it never sits. Biryani goes on dum with kaima rice and fried
+            shallots, and the fish curry is made fresh each morning with the day's catch.
           </p>
         </div>
         <div className="space-y-5 leading-relaxed text-muted-foreground">
           <p>
-            The room off Tramway Lane is deliberately calm — brass lamps, dark
-            wood, clean tables and staff who notice when your glass is empty.
-            Guests tell us the ambience is why they stay; the beef ularthiyathu is
-            why they come back.
+            The room off Tramway Lane is deliberately calm — brass lamps, dark wood, clean tables
+            and staff who notice when your glass is empty. Guests tell us the ambience is why they
+            stay; the beef ularthiyathu is why they come back.
           </p>
           <p>
-            We keep the menu tight on purpose. Fewer dishes, cooked properly,
-            every single service.
+            We keep the menu tight on purpose. Fewer dishes, cooked properly, every single service.
           </p>
         </div>
       </div>

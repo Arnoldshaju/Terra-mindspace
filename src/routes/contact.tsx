@@ -66,8 +66,7 @@ function ContactPage() {
             <div>
               <h2 className="text-lg">Reservations</h2>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                Tables for 2–12. Ring us and we'll hold one — weekends fill up
-                after 7 pm.
+                Tables for 2–12. Ring us and we'll hold one — weekends fill up after 7 pm.
               </p>
             </div>
           </div>

@@ -51,9 +51,7 @@ export function CartSheet() {
                 >
                   <div>
                     <p className="text-sm font-medium">{line.name}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {inr(line.price)} each
-                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">{inr(line.price)} each</p>
                     <div className="mt-2 flex items-center gap-2">
                       <Button
                         size="icon"
@@ -85,9 +83,7 @@ export function CartSheet() {
                       </Button>
                     </div>
                   </div>
-                  <p className="text-sm font-semibold text-primary">
-                    {inr(line.price * line.qty)}
-                  </p>
+                  <p className="text-sm font-semibold text-primary">{inr(line.price * line.qty)}</p>
                 </li>
               ))}
             </ul>

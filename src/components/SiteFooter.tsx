@@ -12,8 +12,8 @@ export function SiteFooter() {
             TERRA <span className="text-primary">Mindspace</span>
           </h3>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            {RESTAURANT.tagline}. Puttum beefum, Malabar biryani and kudampuli
-            curries cooked the way our grandmothers did.
+            {RESTAURANT.tagline}. Puttum beefum, Malabar biryani and kudampuli curries cooked the
+            way our grandmothers did.
           </p>
         </div>
 
@@ -57,8 +57,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/60 px-5 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} TERRA Mindspace, Chalakudy · Rated{" "}
-        {RESTAURANT.rating} by {RESTAURANT.reviews} diners
+        © {new Date().getFullYear()} TERRA Mindspace, Chalakudy · Rated {RESTAURANT.rating} by{" "}
+        {RESTAURANT.reviews} diners
       </div>
     </footer>
   );

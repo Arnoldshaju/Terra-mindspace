@@ -52,8 +52,7 @@ function MenuPage() {
       <p className="eyebrow">Order online</p>
       <h1 className="mt-4 text-5xl md:text-6xl">The menu</h1>
       <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
-        Everything is cooked to order. Delivery across Chalakudy in 35–45
-        minutes, pickup in 15.
+        Everything is cooked to order. Delivery across Chalakudy in 35–45 minutes, pickup in 15.
       </p>
 
       <div className="sticky top-16 z-30 -mx-5 mt-10 border-b border-border/60 bg-background/90 px-5 py-4 backdrop-blur-xl md:top-20">
@@ -107,9 +106,7 @@ function MenuPage() {
       ))}
 
       {items.length === 0 && (
-        <p className="mt-16 text-center text-muted-foreground">
-          Nothing matches that filter.
-        </p>
+        <p className="mt-16 text-center text-muted-foreground">Nothing matches that filter.</p>
       )}
 
       {count > 0 && (

@@ -189,3 +189,45 @@
 @utility animate-rise {
   animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  header,
+  footer,
+  .no-print,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .printable-invoice-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .printable-invoice-container * {
+    color: #111111 !important;
+    border-color: #e2e8f0 !important;
+  }
+
+  .printable-invoice-container .invoice-badge {
+    border: 1px solid #111111 !important;
+    color: #111111 !important;
+    background: transparent !important;
+  }
+}
+

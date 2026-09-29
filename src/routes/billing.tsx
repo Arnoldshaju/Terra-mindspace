@@ -24,7 +24,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { MENU, RESTAURANT } from "@/lib/menu-data";
 
@@ -118,7 +124,7 @@ export function BillingPage() {
           ...item,
           [field]: value,
         };
-      })
+      }),
     );
   };
 
@@ -193,7 +199,10 @@ export function BillingPage() {
         <div className="no-print flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-border/60 pb-6">
           <div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30 text-xs uppercase tracking-wider">
+              <Badge
+                variant="secondary"
+                className="bg-primary/20 text-primary border-primary/30 text-xs uppercase tracking-wider"
+              >
                 Billing System
               </Badge>
               <span className="text-xs text-muted-foreground">GST Ready</span>
@@ -244,9 +253,7 @@ export function BillingPage() {
                   <FileText className="size-5 text-primary" />
                   Invoice Details & Customer Info
                 </CardTitle>
-                <CardDescription>
-                  Enter customer details and basic invoice metadata
-                </CardDescription>
+                <CardDescription>Enter customer details and basic invoice metadata</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -314,11 +321,14 @@ export function BillingPage() {
                       <Receipt className="size-5 text-primary" />
                       Products & Services
                     </CardTitle>
-                    <CardDescription>
-                      Add line items, adjust quantities and prices
-                    </CardDescription>
+                    <CardDescription>Add line items, adjust quantities and prices</CardDescription>
                   </div>
-                  <Button variant="ghost" size="sm" onClick={handleAddItem} className="gap-1 text-primary">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleAddItem}
+                    className="gap-1 text-primary"
+                  >
                     <Plus className="size-4" />
                     Custom Line
                   </Button>
@@ -375,7 +385,9 @@ export function BillingPage() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
                         <div className="sm:col-span-6 space-y-1">
-                          <Label className="text-[0.7rem] text-muted-foreground">Item Name / Service</Label>
+                          <Label className="text-[0.7rem] text-muted-foreground">
+                            Item Name / Service
+                          </Label>
                           <Input
                             value={item.name}
                             onChange={(e) => handleItemChange(item.id, "name", e.target.value)}
@@ -390,7 +402,11 @@ export function BillingPage() {
                             min="1"
                             value={item.quantity}
                             onChange={(e) =>
-                              handleItemChange(item.id, "quantity", Math.max(1, parseInt(e.target.value) || 1))
+                              handleItemChange(
+                                item.id,
+                                "quantity",
+                                Math.max(1, parseInt(e.target.value) || 1),
+                              )
                             }
                           />
                         </div>
@@ -403,14 +419,21 @@ export function BillingPage() {
                             step="1"
                             value={item.price}
                             onChange={(e) =>
-                              handleItemChange(item.id, "price", Math.max(0, parseFloat(e.target.value) || 0))
+                              handleItemChange(
+                                item.id,
+                                "price",
+                                Math.max(0, parseFloat(e.target.value) || 0),
+                              )
                             }
                           />
                         </div>
                       </div>
 
                       <div className="text-right text-xs text-muted-foreground">
-                        Line Total: <span className="font-semibold text-foreground">₹{((item.quantity || 0) * (item.price || 0)).toFixed(2)}</span>
+                        Line Total:{" "}
+                        <span className="font-semibold text-foreground">
+                          ₹{((item.quantity || 0) * (item.price || 0)).toFixed(2)}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -425,9 +448,7 @@ export function BillingPage() {
                   <Sparkles className="size-5 text-primary" />
                   Tax & Discounts
                 </CardTitle>
-                <CardDescription>
-                  Configure GST/Tax rate and promotional discounts
-                </CardDescription>
+                <CardDescription>Configure GST/Tax rate and promotional discounts</CardDescription>
               </CardHeader>
 
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -458,7 +479,9 @@ export function BillingPage() {
                         type="button"
                         onClick={() => setDiscountType("flat")}
                         className={`px-1.5 py-0.5 rounded ${
-                          discountType === "flat" ? "bg-primary text-primary-foreground font-semibold" : "text-muted-foreground"
+                          discountType === "flat"
+                            ? "bg-primary text-primary-foreground font-semibold"
+                            : "text-muted-foreground"
                         }`}
                       >
                         ₹ Flat
@@ -467,7 +490,9 @@ export function BillingPage() {
                         type="button"
                         onClick={() => setDiscountType("percent")}
                         className={`px-1.5 py-0.5 rounded ${
-                          discountType === "percent" ? "bg-primary text-primary-foreground font-semibold" : "text-muted-foreground"
+                          discountType === "percent"
+                            ? "bg-primary text-primary-foreground font-semibold"
+                            : "text-muted-foreground"
                         }`}
                       >
                         % Pct
@@ -480,7 +505,9 @@ export function BillingPage() {
                       type="number"
                       min="0"
                       value={discountValue}
-                      onChange={(e) => setDiscountValue(Math.max(0, parseFloat(e.target.value) || 0))}
+                      onChange={(e) =>
+                        setDiscountValue(Math.max(0, parseFloat(e.target.value) || 0))
+                      }
                     />
                     <span className="text-sm font-semibold text-muted-foreground">
                       {discountType === "percent" ? "%" : "₹"}
@@ -513,19 +540,18 @@ export function BillingPage() {
                       TERRA <span className="text-amber-500">Mindspace</span>
                     </span>
                   </div>
-                  <p className="mt-1 text-xs text-slate-400">
-                    {RESTAURANT.tagline}
-                  </p>
-                  <p className="mt-0.5 text-xs text-slate-400">
-                    {RESTAURANT.address}
-                  </p>
+                  <p className="mt-1 text-xs text-slate-400">{RESTAURANT.tagline}</p>
+                  <p className="mt-0.5 text-xs text-slate-400">{RESTAURANT.address}</p>
                   <p className="mt-0.5 text-xs text-slate-400">
                     Phone: {RESTAURANT.phone} | GSTIN: 32ABCDE1234F1Z5
                   </p>
                 </div>
 
                 <div className="sm:text-right space-y-1">
-                  <Badge variant="outline" className="invoice-badge border-amber-500/50 text-amber-400 text-xs px-3 py-1">
+                  <Badge
+                    variant="outline"
+                    className="invoice-badge border-amber-500/50 text-amber-400 text-xs px-3 py-1"
+                  >
                     TAX INVOICE
                   </Badge>
                   <div className="text-sm font-mono font-bold text-white mt-2">
@@ -547,9 +573,7 @@ export function BillingPage() {
                     {customerName || "Walk-in Guest"}
                   </div>
                   {customerContact && (
-                    <div className="text-xs text-slate-400 mt-0.5">
-                      Contact: {customerContact}
-                    </div>
+                    <div className="text-xs text-slate-400 mt-0.5">Contact: {customerContact}</div>
                   )}
                 </div>
 
@@ -560,9 +584,7 @@ export function BillingPage() {
                   <div className="text-xs font-semibold text-emerald-400 mt-0.5">
                     PAID / COMPLETED
                   </div>
-                  <div className="text-[0.7rem] text-slate-400 mt-0.5">
-                    Currency: INR (₹)
-                  </div>
+                  <div className="text-[0.7rem] text-slate-400 mt-0.5">Currency: INR (₹)</div>
                 </div>
               </div>
 
@@ -584,10 +606,16 @@ export function BillingPage() {
                       return (
                         <tr key={item.id} className="text-slate-200">
                           <td className="py-3 px-2 text-slate-500">{i + 1}</td>
-                          <td className="py-3 px-2 font-medium text-white">{item.name || "Custom Item"}</td>
+                          <td className="py-3 px-2 font-medium text-white">
+                            {item.name || "Custom Item"}
+                          </td>
                           <td className="py-3 px-2 text-center text-slate-300">{item.quantity}</td>
-                          <td className="py-3 px-2 text-right text-slate-300">₹{(item.price || 0).toFixed(2)}</td>
-                          <td className="py-3 px-2 text-right font-semibold text-white">₹{itemTotal.toFixed(2)}</td>
+                          <td className="py-3 px-2 text-right text-slate-300">
+                            ₹{(item.price || 0).toFixed(2)}
+                          </td>
+                          <td className="py-3 px-2 text-right font-semibold text-white">
+                            ₹{itemTotal.toFixed(2)}
+                          </td>
                         </tr>
                       );
                     })}
@@ -603,7 +631,9 @@ export function BillingPage() {
                   <p className="font-semibold text-slate-300">Terms & Conditions:</p>
                   <p>1. Invoice generated electronically by TERRA Mindspace.</p>
                   <p>2. Prices are inclusive of applicable taxes.</p>
-                  <p className="mt-2 text-amber-500 italic">Thank you for dining with TERRA Mindspace!</p>
+                  <p className="mt-2 text-amber-500 italic">
+                    Thank you for dining with TERRA Mindspace!
+                  </p>
                 </div>
 
                 <div className="w-full sm:w-64 space-y-2 bg-slate-900/80 p-4 rounded-lg border border-slate-800 text-xs">
@@ -619,7 +649,9 @@ export function BillingPage() {
                   )}
                   {discountAmount > 0 && (
                     <div className="flex justify-between text-emerald-400">
-                      <span>Discount ({discountType === "percent" ? `${discountValue}%` : "Flat"}):</span>
+                      <span>
+                        Discount ({discountType === "percent" ? `${discountValue}%` : "Flat"}):
+                      </span>
                       <span>-{formatINR(discountAmount)}</span>
                     </div>
                   )}

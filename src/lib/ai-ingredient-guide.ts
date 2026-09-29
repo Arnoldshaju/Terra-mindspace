@@ -110,7 +110,8 @@ export const AI_DISH_INSIGHTS: Record<string, AiDishInsight> = {
       {
         name: "Kaima (Jeerakasala) Rice",
         origin: "Malabar Region",
-        benefit: "Fragrant short grain rice with a low glycemic index compared to standard white rice.",
+        benefit:
+          "Fragrant short grain rice with a low glycemic index compared to standard white rice.",
       },
       {
         name: "Pure Country Ghee",
@@ -316,7 +317,7 @@ export type CartNutritionSummary = {
 };
 
 export function calculateCartNutrition(
-  items: Array<{ id: string; quantity: number }>
+  items: Array<{ id: string; quantity: number }>,
 ): CartNutritionSummary {
   let totalCalories = 0;
   let totalProtein = 0;

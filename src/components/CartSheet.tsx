@@ -40,7 +40,10 @@ export function CartSheet() {
               <span className="font-semibold text-amber-300 flex items-center gap-1">
                 <Sparkles className="size-3.5 text-amber-400" /> AI Meal Nutrition
               </span>
-              <Badge variant="outline" className="border-amber-400/40 text-amber-300 text-[0.65rem]">
+              <Badge
+                variant="outline"
+                className="border-amber-400/40 text-amber-300 text-[0.65rem]"
+              >
                 {nutritionSummary.healthGrade}
               </Badge>
             </div>
@@ -50,7 +53,8 @@ export function CartSheet() {
                 <Flame className="size-3 text-amber-400" /> {nutritionSummary.totalCalories} kcal
               </span>
               <span className="flex items-center gap-1">
-                <Dumbbell className="size-3 text-blue-400" /> {nutritionSummary.totalProtein}g protein
+                <Dumbbell className="size-3 text-blue-400" /> {nutritionSummary.totalProtein}g
+                protein
               </span>
               <span>{nutritionSummary.totalCarbs}g carbs</span>
               <span>{nutritionSummary.totalFat}g fat</span>

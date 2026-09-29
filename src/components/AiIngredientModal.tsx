@@ -30,7 +30,10 @@ export function AiIngredientModal({ item, open, onOpenChange }: AiIngredientModa
         <DialogHeader className="space-y-2 text-left">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-gradient-ember text-primary-foreground font-bold px-2.5 py-0.5 text-xs flex items-center gap-1">
+              <Badge
+                variant="secondary"
+                className="bg-gradient-ember text-primary-foreground font-bold px-2.5 py-0.5 text-xs flex items-center gap-1"
+              >
                 <Sparkles className="size-3.5" /> AI Culinary Guide
               </Badge>
               <span className="text-xs text-muted-foreground font-mono">
@@ -124,12 +127,12 @@ export function AiIngredientModal({ item, open, onOpenChange }: AiIngredientModa
           {/* Macro Proportion Bar */}
           <div className="space-y-1.5 pt-1">
             <div className="flex justify-between text-[0.7rem] text-muted-foreground font-mono">
-              <span>Protein ({Math.round((insight.protein * 4 / insight.calories) * 100)}%)</span>
-              <span>Carbs ({Math.round((insight.carbs * 4 / insight.calories) * 100)}%)</span>
-              <span>Fat ({Math.round((insight.fat * 9 / insight.calories) * 100)}%)</span>
+              <span>Protein ({Math.round(((insight.protein * 4) / insight.calories) * 100)}%)</span>
+              <span>Carbs ({Math.round(((insight.carbs * 4) / insight.calories) * 100)}%)</span>
+              <span>Fat ({Math.round(((insight.fat * 9) / insight.calories) * 100)}%)</span>
             </div>
             <Progress
-              value={Math.round((insight.protein * 4 / insight.calories) * 100)}
+              value={Math.round(((insight.protein * 4) / insight.calories) * 100)}
               className="h-2 bg-muted"
             />
           </div>
@@ -165,12 +168,13 @@ export function AiIngredientModal({ item, open, onOpenChange }: AiIngredientModa
                     <ShieldCheck className="size-4 text-emerald-400" />
                     {ing.name}
                   </div>
-                  <div className="text-[0.75rem] text-muted-foreground mt-0.5">
-                    {ing.benefit}
-                  </div>
+                  <div className="text-[0.75rem] text-muted-foreground mt-0.5">{ing.benefit}</div>
                 </div>
 
-                <Badge variant="outline" className="border-amber-500/40 text-amber-400 text-[0.65rem] shrink-0 w-fit">
+                <Badge
+                  variant="outline"
+                  className="border-amber-500/40 text-amber-400 text-[0.65rem] shrink-0 w-fit"
+                >
                   📍 {ing.origin}
                 </Badge>
               </div>

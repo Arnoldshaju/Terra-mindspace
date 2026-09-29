@@ -44,7 +44,7 @@ function MenuPage() {
         }
         return true;
       }),
-    [active, filter]
+    [active, filter],
   );
 
   const grouped = useMemo(() => {

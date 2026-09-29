@@ -119,7 +119,10 @@ export function DishReviewModal({ item, open, onOpenChange }: DishReviewModalPro
                 <p className="text-xs text-muted-foreground mt-0.5">{item.malayalam}</p>
               )}
             </div>
-            <Badge variant="secondary" className="bg-primary/15 text-primary border-primary/30 px-3 py-1 font-semibold text-sm">
+            <Badge
+              variant="secondary"
+              className="bg-primary/15 text-primary border-primary/30 px-3 py-1 font-semibold text-sm"
+            >
               ★ {stats.averageRating} / 5
             </Badge>
           </div>
@@ -148,7 +151,8 @@ export function DishReviewModal({ item, open, onOpenChange }: DishReviewModalPro
               ))}
             </div>
             <div className="text-xs text-muted-foreground mt-1 font-medium">
-              Based on {stats.totalReviews} customer {stats.totalReviews === 1 ? "review" : "reviews"}
+              Based on {stats.totalReviews} customer{" "}
+              {stats.totalReviews === 1 ? "review" : "reviews"}
             </div>
           </div>
 
@@ -159,9 +163,7 @@ export function DishReviewModal({ item, open, onOpenChange }: DishReviewModalPro
               const pct = stats.totalReviews > 0 ? (count / stats.totalReviews) * 100 : 0;
               return (
                 <div key={star} className="flex items-center gap-2 text-xs">
-                  <span className="w-6 text-right font-medium text-muted-foreground">
-                    {star} ★
-                  </span>
+                  <span className="w-6 text-right font-medium text-muted-foreground">{star} ★</span>
                   <Progress value={pct} className="h-2 flex-1 bg-muted" />
                   <span className="w-8 text-left text-muted-foreground/80 font-mono text-[0.7rem]">
                     {count}
@@ -190,14 +192,15 @@ export function DishReviewModal({ item, open, onOpenChange }: DishReviewModalPro
 
         {/* Write Review Form */}
         {showForm && (
-          <form onSubmit={handleSubmit} className="p-4 rounded-xl border border-primary/40 bg-primary/5 space-y-4 animate-rise">
+          <form
+            onSubmit={handleSubmit}
+            className="p-4 rounded-xl border border-primary/40 bg-primary/5 space-y-4 animate-rise"
+          >
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold text-foreground flex items-center gap-1.5">
                 <Sparkles className="size-4 text-primary" /> Rate this dish
               </span>
-              <span className="text-xs font-semibold text-primary">
-                {userRating} of 5 Stars
-              </span>
+              <span className="text-xs font-semibold text-primary">{userRating} of 5 Stars</span>
             </div>
 
             {/* Interactive Star Picker */}
@@ -303,7 +306,9 @@ export function DishReviewModal({ item, open, onOpenChange }: DishReviewModalPro
                           <Star
                             key={s}
                             className={`size-3 ${
-                              s <= rev.rating ? "fill-primary text-primary" : "text-muted-foreground/30"
+                              s <= rev.rating
+                                ? "fill-primary text-primary"
+                                : "text-muted-foreground/30"
                             }`}
                           />
                         ))}

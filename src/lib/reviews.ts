@@ -40,7 +40,8 @@ const INITIAL_REVIEWS: Review[] = [
     author: "Vipin K.",
     rating: 4,
     date: "2026-09-15",
-    comment: "Super tasty and generous portion size. Spicier than expected, but absolutely loved it.",
+    comment:
+      "Super tasty and generous portion size. Spicier than expected, but absolutely loved it.",
   },
   {
     id: "rev-4",

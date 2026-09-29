@@ -1,13 +1,20 @@
-import { Check, Plus } from "lucide-react";
+import { Check, Plus, Star, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { inr, useCart } from "@/lib/cart";
 import type { MenuItem } from "@/lib/menu-data";
+import { getDishStats } from "@/lib/reviews";
+import { DishReviewModal } from "@/components/DishReviewModal";
+import { AiIngredientModal } from "@/components/AiIngredientModal";
 
 export function MenuCard({ item }: { item: MenuItem }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [aiOpen, setAiOpen] = useState(false);
+
+  const stats = getDishStats(item.id);
 
   useEffect(() => {
     if (!added) return;
@@ -16,57 +23,94 @@ export function MenuCard({ item }: { item: MenuItem }) {
   }, [added]);
 
   return (
-    <article className="group relative flex flex-col justify-between gap-4 rounded-lg border border-border/70 bg-card/60 transition-colors hover:border-primary/50">
-      {item.image && (
-        <div className="overflow-hidden rounded-t-lg">
-          <img
-            src={item.image}
-            alt={item.name}
-            loading="lazy"
-            width={600}
-            height={360}
-            className="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-      )}
-      <div className="flex flex-1 flex-col justify-between gap-4 p-5">
-        <div>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-lg leading-tight">{item.name}</h3>
-              {item.malayalam && (
-                <p className="mt-1 text-xs text-muted-foreground">{item.malayalam}</p>
-              )}
-            </div>
-            <span
-              className={`mt-1 size-3 shrink-0 rounded-sm border ${
-                item.veg ? "border-leaf bg-leaf/40" : "border-spice bg-spice/40"
-              }`}
-              aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
+    <>
+      <article className="group relative flex flex-col justify-between gap-4 rounded-lg border border-border/70 bg-card/60 transition-colors hover:border-primary/50">
+        {item.image && (
+          <div className="overflow-hidden rounded-t-lg">
+            <img
+              src={item.image}
+              alt={item.name}
+              loading="lazy"
+              width={600}
+              height={360}
+              className="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+        )}
+        <div className="flex flex-1 flex-col justify-between gap-4 p-5">
+          <div>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-lg leading-tight">{item.name}</h3>
+                {item.malayalam && (
+                  <p className="mt-1 text-xs text-muted-foreground">{item.malayalam}</p>
+                )}
+              </div>
+              <span
+                className={`mt-1 size-3 shrink-0 rounded-sm border ${
+                  item.veg ? "border-leaf bg-leaf/40" : "border-spice bg-spice/40"
+                }`}
+                aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
+              />
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+          </div>
+
+          {/* Badges & Actions Row */}
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/40 pt-3">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {/* Reviews Button */}
+              <button
+                type="button"
+                onClick={() => setReviewOpen(true)}
+                className="flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary transition-colors hover:bg-primary/20 hover:border-primary"
+                title="View customer ratings & reviews"
+              >
+                <Star className="size-3.5 fill-primary text-primary" />
+                <span>{stats.averageRating}</span>
+                <span className="text-[0.65rem] text-muted-foreground font-normal">
+                  ({stats.totalReviews})
+                </span>
+              </button>
+
+              {/* AI Guide Button */}
+              <button
+                type="button"
+                onClick={() => setAiOpen(true)}
+                className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-xs font-medium text-amber-400 transition-colors hover:bg-amber-500/20 hover:border-amber-400"
+                title="Nutritional & Spice Heritage Guide"
+              >
+                <Sparkles className="size-3 text-amber-400" />
+                <span>Info</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="font-display text-xl text-primary">{inr(item.price)}</span>
+              <Button
+                size="sm"
+                variant={added ? "leaf" : "gold"}
+                onClick={() => {
+                  add(item);
+                  setAdded(true);
+                }}
+              >
+                {added ? <Check /> : <Plus />}
+                {added ? "Added" : "Add"}
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="font-display text-xl text-primary">{inr(item.price)}</span>
-          <Button
-            size="sm"
-            variant={added ? "leaf" : "gold"}
-            onClick={() => {
-              add(item);
-              setAdded(true);
-            }}
-          >
-            {added ? <Check /> : <Plus />}
-            {added ? "Added" : "Add"}
-          </Button>
-        </div>
-      </div>
-      {item.signature && (
-        <span className="absolute -top-2.5 left-5 rounded-full bg-gradient-ember px-2.5 py-0.5 text-[0.6rem] font-bold tracking-[0.2em] text-primary-foreground uppercase">
-          Signature
-        </span>
-      )}
-    </article>
+
+        {item.signature && (
+          <span className="absolute -top-2.5 left-5 rounded-full bg-gradient-ember px-2.5 py-0.5 text-[0.6rem] font-bold tracking-[0.2em] text-primary-foreground uppercase">
+            Signature
+          </span>
+        )}
+      </article>
+
+      <DishReviewModal item={item} open={reviewOpen} onOpenChange={setReviewOpen} />
+      <AiIngredientModal item={item} open={aiOpen} onOpenChange={setAiOpen} />
+    </>
   );
 }

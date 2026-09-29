@@ -9,6 +9,7 @@ import { RESTAURANT } from "@/lib/menu-data";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/menu", label: "Order Online" },
+  { to: "/billing", label: "Billing" },
   { to: "/about", label: "Our Story" },
   { to: "/contact", label: "Visit" },
 ] as const;

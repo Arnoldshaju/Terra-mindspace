@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2, Sparkles, Flame, Dumbbell } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,12 +9,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { Badge } from "@/components/ui/badge";
 import { deliveryFee, FREE_DELIVERY_OVER, inr, useCart } from "@/lib/cart";
+import { calculateCartNutrition } from "@/lib/ai-ingredient-guide";
 
 export function CartSheet() {
   const { lines, open, setOpen, setQty, remove, subtotal, count } = useCart();
   const navigate = useNavigate();
   const fee = deliveryFee(subtotal, "delivery");
+
+  const cartItems = lines.map((l) => ({ id: l.id, quantity: l.qty }));
+  const nutritionSummary = calculateCartNutrition(cartItems);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -27,6 +32,35 @@ export function CartSheet() {
               : `${count} item${count > 1 ? "s" : ""} from the Chalakudy kitchen`}
           </SheetDescription>
         </SheetHeader>
+
+        {/* AI Order Nutrition Banner */}
+        {lines.length > 0 && (
+          <div className="mt-3 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10 space-y-1.5">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-amber-300 flex items-center gap-1">
+                <Sparkles className="size-3.5 text-amber-400" /> AI Meal Nutrition
+              </span>
+              <Badge
+                variant="outline"
+                className="border-amber-400/40 text-amber-300 text-[0.65rem]"
+              >
+                {nutritionSummary.healthGrade}
+              </Badge>
+            </div>
+
+            <div className="flex items-center justify-between text-[0.7rem] font-mono text-slate-300 pt-0.5">
+              <span className="flex items-center gap-1">
+                <Flame className="size-3 text-amber-400" /> {nutritionSummary.totalCalories} kcal
+              </span>
+              <span className="flex items-center gap-1">
+                <Dumbbell className="size-3 text-blue-400" /> {nutritionSummary.totalProtein}g
+                protein
+              </span>
+              <span>{nutritionSummary.totalCarbs}g carbs</span>
+              <span>{nutritionSummary.totalFat}g fat</span>
+            </div>
+          </div>
+        )}
 
         <div className="-mx-6 flex-1 overflow-y-auto px-6 py-4">
           {lines.length === 0 ? (

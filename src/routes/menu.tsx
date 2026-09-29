@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { Star, MessageSquare } from "lucide-react";
 
 import { MenuCard } from "@/components/MenuCard";
 import { Button } from "@/components/ui/button";
 import { inr, useCart } from "@/lib/cart";
 import { CATEGORIES, MENU } from "@/lib/menu-data";
+import { getDishStats } from "@/lib/reviews";
 
 const TITLE = "Order Online · TERRA Mindspace Menu, Chalakudy";
 const DESCRIPTION =
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/menu")({
   component: MenuPage,
 });
 
-type Filter = "all" | "veg" | "nonveg";
+type Filter = "all" | "veg" | "nonveg" | "top";
 
 function MenuPage() {
   const [active, setActive] = useState<string>("All");
@@ -33,9 +35,15 @@ function MenuPage() {
 
   const items = useMemo(
     () =>
-      MENU.filter((m) => (active === "All" ? true : m.category === active)).filter((m) =>
-        filter === "all" ? true : filter === "veg" ? m.veg : !m.veg,
-      ),
+      MENU.filter((m) => (active === "All" ? true : m.category === active)).filter((m) => {
+        if (filter === "veg") return m.veg;
+        if (filter === "nonveg") return !m.veg;
+        if (filter === "top") {
+          const stats = getDishStats(m.id);
+          return stats.averageRating >= 4.8;
+        }
+        return true;
+      }),
     [active, filter],
   );
 
@@ -49,11 +57,37 @@ function MenuPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 pt-16 pb-32">
-      <p className="eyebrow">Order online</p>
-      <h1 className="mt-4 text-5xl md:text-6xl">The menu</h1>
-      <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
-        Everything is cooked to order. Delivery across Chalakudy in 35–45 minutes, pickup in 15.
-      </p>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <p className="eyebrow">Order online</p>
+          <h1 className="mt-4 text-5xl md:text-6xl">The menu</h1>
+          <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
+            Everything is cooked to order. Delivery across Chalakudy in 35–45 minutes, pickup in 15.
+          </p>
+        </div>
+
+        {/* Social Proof Trust Badge */}
+        <div className="flex items-center gap-3 p-3.5 rounded-xl border border-primary/30 bg-primary/10 backdrop-blur shrink-0">
+          <div className="flex -space-x-2">
+            <span className="inline-flex size-8 items-center justify-center rounded-full bg-amber-500 font-bold text-xs text-background">
+              4.9
+            </span>
+            <span className="inline-flex size-8 items-center justify-center rounded-full bg-emerald-500 font-bold text-xs text-background">
+              ★
+            </span>
+          </div>
+          <div>
+            <div className="flex items-center gap-1 text-xs font-semibold text-foreground">
+              <Star className="size-3.5 fill-primary text-primary" />
+              <span>4.9 / 5 Average Rating</span>
+            </div>
+            <p className="text-[0.7rem] text-muted-foreground flex items-center gap-1">
+              <MessageSquare className="size-3 text-primary" />
+              Verified Chalakudy customer reviews
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="sticky top-16 z-30 -mx-5 mt-10 border-b border-border/60 bg-background/90 px-5 py-4 backdrop-blur-xl md:top-20">
         <div className="flex gap-2 overflow-x-auto pb-1">
@@ -71,10 +105,11 @@ function MenuPage() {
             </button>
           ))}
         </div>
-        <div className="mt-3 flex gap-2">
+        <div className="mt-3 flex gap-2 flex-wrap">
           {(
             [
               ["all", "Everything"],
+              ["top", "★ Top Rated 4.8+"],
               ["veg", "Veg"],
               ["nonveg", "Non-veg"],
             ] as const
@@ -82,10 +117,10 @@ function MenuPage() {
             <button
               key={key}
               onClick={() => setFilter(key)}
-              className={`rounded-md px-3 py-1 text-xs transition-colors ${
+              className={`rounded-md px-3 py-1 text-xs transition-colors flex items-center gap-1 ${
                 filter === key
-                  ? "bg-secondary text-secondary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               {label}

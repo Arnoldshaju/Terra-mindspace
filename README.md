@@ -135,13 +135,13 @@ pnpm format
 
 ## Available Routes
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | Home | Hero section, signature dishes, features strip, reviews, CTA |
-| `/menu` | Menu | Browse menu with category filtering, Veg/Non-veg toggle, fixed cart bar |
-| `/checkout` | Checkout | Delivery/pickup form, order summary, WhatsApp confirmation |
-| `/about` | About | Restaurant story, interior images, ratings, stats |
-| `/contact` | Contact | Address, hours, phone, Google Maps embed, reservations |
+| Route       | Page     | Description                                                             |
+| ----------- | -------- | ----------------------------------------------------------------------- |
+| `/`         | Home     | Hero section, signature dishes, features strip, reviews, CTA            |
+| `/menu`     | Menu     | Browse menu with category filtering, Veg/Non-veg toggle, fixed cart bar |
+| `/checkout` | Checkout | Delivery/pickup form, order summary, WhatsApp confirmation              |
+| `/about`    | About    | Restaurant story, interior images, ratings, stats                       |
+| `/contact`  | Contact  | Address, hours, phone, Google Maps embed, reservations                  |
 
 ## Cart System
 
@@ -156,16 +156,16 @@ The cart is managed via React Context (`CartProvider`) with localStorage persist
 
 ## Restaurant Info
 
-| Detail | Value |
-|--------|-------|
-| **Name** | TERRA Mindspace |
-| **Cuisine** | Kerala / Malabar / Indian |
-| **Location** | Kottatt, Chalakudy, Kerala 680731, India |
-| **Phone** | 62380 46258 |
-| **WhatsApp** | +91 62380 46258 |
-| **Hours** | 11:30 am – 10:30 pm, every day |
-| **Rating** | 4.2 across 83 Google reviews |
-| **Price Range** | ₹200–400 per person |
+| Detail          | Value                                    |
+| --------------- | ---------------------------------------- |
+| **Name**        | TERRA Mindspace                          |
+| **Cuisine**     | Kerala / Malabar / Indian                |
+| **Location**    | Kottatt, Chalakudy, Kerala 680731, India |
+| **Phone**       | 62380 46258                              |
+| **WhatsApp**    | +91 62380 46258                          |
+| **Hours**       | 11:30 am – 10:30 pm, every day           |
+| **Rating**      | 4.2 across 83 Google reviews             |
+| **Price Range** | ₹200–400 per person                      |
 
 ## SEO & Structured Data
 
